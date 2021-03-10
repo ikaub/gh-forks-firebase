@@ -15,6 +15,7 @@ export const Results: React.FC = () => {
     const { location: { state } } = useHistory();
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ currentUrl, setCurrentUrl ] = useState(state);
+    const [ favorites, setFavorites ] = useState<{ id: number }[]>([]);
     const { search } = useLocation();
 
     const handleLoadNext = () => {
@@ -41,14 +42,17 @@ export const Results: React.FC = () => {
     }, []);
 
     useEffect(() => {
-      database.push({
-        message: 'Hello, Firebase!',
-      });
       database.on('value', (snapshot: firebase.database.DataSnapshot) => {
-        const values = snapshot.val();
-        console.log(values);
+        const values: { id: number }[] = Object.values(snapshot.val());
+        setFavorites(values);
       });
     }, []);
+
+    const handleAddFavorite = (id: number) => {
+      database.push({
+        id,
+      });
+    };
 
     return (
       <div className="results">
@@ -71,7 +75,17 @@ export const Results: React.FC = () => {
                 <td>{repo.owner.login}</td>
                 <td>{repo.stargazers_count}</td>
                 <td><a href={repo.clone_url}>{repo.clone_url}</a></td>
-                <td><div className="results__add-favs-btn">Add to favorites</div></td>
+                <td>
+                  {favorites.find(fav => fav.id === repo.id)
+                    ? (
+                      <div>Already in favorites!</div>
+                    )
+                    : (<div onClick={() => handleAddFavorite(repo.id)} className="results__add-favs-btn">
+                        Add to favorites
+                      </div>
+                    )
+                  }
+                </td>
               </tr>
             ))}
             </tbody>
