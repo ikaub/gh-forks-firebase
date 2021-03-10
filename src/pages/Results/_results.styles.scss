@@ -6,17 +6,37 @@
   height: 100vh;
   padding: 1rem;
 
-  &__table {
-    margin-top: 3rem;
+  &__table-wrapper {
     width: 100%;
-    border-collapse: collapse;
 
-    td, th, tr {
-      border: 1px solid black;
-    }
+    .results__table {
+      margin-top: 3rem;
+      width: 100%;
+      border-collapse: collapse;
 
-    td, th {
-      padding: .5rem 1rem;
+      td, th, tr {
+        border: 1px solid black;
+      }
+
+      td, th {
+        padding: .5rem 1rem;
+      }
+
+      &__controls {
+        display: flex;
+        justify-content: space-between;
+        width: 7rem;
+        margin-top: 4px;
+        margin-left: auto;
+
+        div {
+          border: 1px solid black;
+          font-size: 1.6rem;
+          font-weight: bold;
+          padding: .5rem 1rem;
+          cursor: pointer;
+        }
+      }
     }
   }
 }

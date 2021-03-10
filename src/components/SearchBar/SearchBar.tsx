@@ -14,9 +14,10 @@ export const SearchBar: React.FC = () => {
   };
 
   const handleSearch = () => {
-    dispatch(fetchResults(search));
+    dispatch(fetchResults(search, 1));
     history.push({
       pathname: '/results',
+      state: search,
     });
   };
 
