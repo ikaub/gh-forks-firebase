@@ -1,0 +1,29 @@
+.searchbar {
+  display: flex;
+  align-items: flex-end;
+
+  label {
+    display: inline-block;
+    input {
+      display: block;
+      border: 1px solid #bbb;
+      padding: .5rem;
+      font-size: .9rem;
+      border-radius: 7px;
+      height: 43px;
+    }
+  }
+
+  .search-btn {
+    background-color: #7300c4;
+    color: #fff;
+    border-radius: 7px;
+    height: 43px;
+    width: 6rem;
+    margin-left: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}

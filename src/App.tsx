@@ -1,9 +1,30 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-export const App = () => {
+import './App.scss';
+import { Search } from './pages/Search/Search';
+import { store } from './store/store';
+import { Results } from './pages/Results/Results';
+
+export const App: React.FC = () => {
   return (
-    <div className="App">
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Search/>
+          </Route>
 
-    </div>
+          <Route path="/results">
+            <Results/>
+          </Route>
+
+          <Route path="*">
+            <Redirect to="/"/>
+          </Route>
+        </Switch>
+      </Router>
+    </Provider>
   );
 };

@@ -1,0 +1,22 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+
+  &__table {
+    margin-top: 3rem;
+    width: 100%;
+    border-collapse: collapse;
+
+    td, th, tr {
+      border: 1px solid black;
+    }
+
+    td, th {
+      padding: .5rem 1rem;
+    }
+  }
+}
