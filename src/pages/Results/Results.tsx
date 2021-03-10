@@ -6,6 +6,8 @@ import { RootState } from '../../store/store';
 import { Repository } from '../../store/repos/repos.models';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { fetchResults } from '../../store/repos/repos.actions';
+import database from './../../firebase';
+import firebase from 'firebase';
 
 export const Results: React.FC = () => {
     const repos: Repository[] = useSelector((state: RootState) => state.repos.repos);
@@ -38,6 +40,16 @@ export const Results: React.FC = () => {
       }
     }, []);
 
+    useEffect(() => {
+      database.push({
+        message: 'Hello, Firebase!',
+      });
+      database.on('value', (snapshot: firebase.database.DataSnapshot) => {
+        const values = snapshot.val();
+        console.log(values);
+      });
+    }, []);
+
     return (
       <div className="results">
         <SearchBar/>
@@ -49,6 +61,7 @@ export const Results: React.FC = () => {
               <th>Owner</th>
               <th>Star Count</th>
               <th>Repo Link</th>
+              <th>Favorite</th>
             </tr>
             </thead>
             <tbody>
@@ -58,6 +71,7 @@ export const Results: React.FC = () => {
                 <td>{repo.owner.login}</td>
                 <td>{repo.stargazers_count}</td>
                 <td><a href={repo.clone_url}>{repo.clone_url}</a></td>
+                <td><div className="results__add-favs-btn">Add to favorites</div></td>
               </tr>
             ))}
             </tbody>

@@ -6,6 +6,17 @@
   height: 100vh;
   padding: 1rem;
 
+  &__add-favs-btn {
+    background-color: #7300c4;
+    color: #fff;
+    padding: .4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
   &__table-wrapper {
     width: 100%;
 
